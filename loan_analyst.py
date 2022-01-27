@@ -48,7 +48,7 @@ class Loan:
         amort = self.loan_table()
         print("Summary")
         print("-" * 30)
-        print(f'Payment: {self.loan_pmt()[1]:>21}')
+        print(f'Payment: {self.pmt_str:>21}')
         print(f'{"Payoff Date:":19s} {amort.index.date[-1]}')
         print(f'Interest Paid: {amort.Interest.cumsum()[-1]:>15,.2f}')
         print("-" * 30)
@@ -67,7 +67,8 @@ loan = Loan(5.875,30,360000)
 amort = loan.loan_table()
 print(amort['Balance'])
 print(loan.retire_debt(10))
-print(loan.pay_early(100))      
+print(loan.pay_early(100))
+print(loan.summary())      
 
 
 
