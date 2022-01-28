@@ -3,6 +3,7 @@
 Created on Fri Jan 21 10:58:14 2022
 
 @author: mmacarty
+
 """
 
 import datetime as dt
@@ -44,7 +45,7 @@ class Loan:
         plt.show()
 
     def summary(self):
-        amort = self.loan_table()
+        amort = self.table
         print("Summary")
         print("-" * 30)
         print(f'Payment: {self.pmt_str:>21}')
@@ -59,12 +60,13 @@ class Loan:
         extra_pmt = 1
         while npf.nper(self.rate, self.pmt + extra_pmt, -self.loan_amount) / 12 > years_to_debt_free:
             extra_pmt += 1
-        return npf.nper(self.rate, self.pmt + extra_pmt, -self.loan_amount) / 12, self.pmt + extra_pmt
+        return extra_pmt, self.pmt + extra_pmt
 
 
-loan = Loan(5.875, 30, 360000)
-amort = loan.loan_table()
-print(amort['Balance'])
-print(loan.retire_debt(10))
-print(loan.pay_early(100))
-print(loan.summary())
+# loan = Loan(5.875, 30, 360000)
+# amort = loan.table
+# loan.plot_balances()
+# print(amort)
+# print(loan.retire_debt(10))
+# print(loan.pay_early(100))
+# loan.summary()
