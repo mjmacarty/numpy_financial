@@ -54,7 +54,7 @@ class Loan:
         print("-" * 30)
 
     def pay_early(self, extra_amt):
-        return f'{npf.nper(self.rate, self.pmt + extra_amt, -self.loan_amount).round(2) / 12}'
+        return f'{round(npf.nper(self.rate, self.pmt + extra_amt, -self.loan_amount) / 12, 2)}'
 
     def retire_debt(self, years_to_debt_free):
         extra_pmt = 1
