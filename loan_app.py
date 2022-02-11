@@ -47,19 +47,20 @@ def plot(loan):
 def pay_faster(loan):
     amt = float(input("Enter extra monthly payment: "))
     new_term = loan.pay_early(amt)
-    print(f"{new_term} years")
+    print(f"Paid off in {new_term} years")
 
 
 def pay_early(loan):
     years_to_pay = int(input("Enter years to debt free: "))
     result = loan.retire_debt(years_to_pay)
-    print(f"Monthly extra: {result[0]:,.2f} \tTotal Payment: {result[1]:,.2f}")
+    print(f"Monthly extra: ${result[0]:,.2f} \tTotal Payment: ${result[1]:,.2f}")
 
 
 action = {'1': new_loan, '2': pmt, '3': amort, '4': summary,
           '5': plot, '6': pay_early, '7': pay_faster}
 
 
+# program flow
 def main():
     while True:
         display_menu()
@@ -73,8 +74,14 @@ def main():
             sleep(.75)
 
         elif choice in '234567':
-            action[choice](loan)
-            sleep(1)
+            try:
+                action[choice](loan)
+                sleep(2)
+            except NameError:
+                print("No Loan setup")
+                print("Set up a new loan")
+                sleep(2)
+
         elif choice == '8':
             print("Goodbye")
             sys.exit()
